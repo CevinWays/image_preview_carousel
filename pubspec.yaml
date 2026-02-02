@@ -1,7 +1,8 @@
 name: image_preview_carousel
 description: "A new Flutter package project."
 version: 0.0.1
-homepage:
+homepage: https://github.com/CevinWays/image_preview_carousel
+repository: https://github.com/CevinWays/image_preview_carousel
 
 environment:
   sdk: ^3.7.2
