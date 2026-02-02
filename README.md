@@ -68,7 +68,7 @@ Widget build(BuildContext context) {
 }
 ```
 
-Ff combine with dialog :
+If combine with dialog :
 
 ```dart
 InkWell(
