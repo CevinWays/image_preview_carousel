@@ -68,6 +68,35 @@ Widget build(BuildContext context) {
 }
 ```
 
+Ff combine with dialog :
+
+```dart
+InkWell(
+    onTap: () async {
+        showDialog(
+            context: context,
+            builder: (context) => Dialog(
+                backgroundColor: whiteColor,
+                child: ImagePreviewCarousel(
+                    images: myImages,
+                    carouselHeight:
+                        300.0, // Optional: Height of the main image
+                    thumbnailHeight:
+                        80.0, // Optional: Height of the thumbnails
+                ),
+            ),
+        );
+    },
+    child: Text(
+        'See Images',
+        style: LessworryTextStyle.txtMdRegular(
+            context: context,
+            color: Theme.of(context).primaryColor,
+        ),
+    ),
+),
+```
+
 ## Customization Parameters
 
 | Parameter | Type | Default | Description |
