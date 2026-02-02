@@ -55,6 +55,11 @@ Place the `ImagePreviewCarousel` widget in your build method.
 ```dart
 @override
 Widget build(BuildContext context) {
+  final List<ImageProvider> myImages = [
+    AssetImage('assets/images/image1.png'),
+    AssetImage('assets/images/image2.png'),
+    AssetImage('assets/images/image3.png'),
+  ];
   return Scaffold(
     appBar: AppBar(title: Text('Image Carousel Demo')),
     body: Center(
