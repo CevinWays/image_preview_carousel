@@ -42,9 +42,9 @@ Create a list of `ImageProvider` objects. These can be `NetworkImage`, `AssetIma
 
 ```dart
 final List<ImageProvider> myImages = [
-  NetworkImage('https://via.placeholder.com/400x300'),
-  NetworkImage('https://via.placeholder.com/400x300/ff0000'),
-  AssetImage('assets/my_local_image.png'),
+    AssetImage('assets/images/image1.png'),
+    AssetImage('assets/images/image2.png'),
+    AssetImage('assets/images/image3.png'),
 ];
 ```
 
