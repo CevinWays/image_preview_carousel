@@ -1,13 +1,15 @@
 # Image Preview Carousel
 
-A Flutter package that provides a synchronized image carousel with a thumbnail gallery.
+A Flutter package that provides a synchronized image and video carousel with a thumbnail gallery.
 
 ## Features
 
+*   **Mixed Media Support**: Display both images and videos in the same carousel.
 *   **Synchronized Views**: Swiping the main carousel updates the thumbnail selection, and tapping a thumbnail scrolls the carousel.
-*   **Auto-scrolling Thumbnails**: The thumbnail list automatically scrolls to keep the selected image in view.
-*   **Customizable**: Adjust heights, padding, and selection styling.
-*   **Flexible Inputs**: Accepts any `List<ImageProvider>`, so you can use network images, assets, files, or memory images.
+*   **Navigation Arrows**: Built-in Previous/Next arrows for easy navigation.
+*   **Auto-scrolling Thumbnails**: The thumbnail list automatically scrolls to keep the selected item in view.
+*   **Customizable**: Adjust heights, padding, selection styling, arrow colors, and more.
+*   **Video Playback**: Native video playback support with play/pause controls.
 
 ## Installation
 
@@ -26,90 +28,72 @@ flutter pub get
 
 ## Usage
 
-Follow these steps to implement the carousel in your app:
+> **BREAKING CHANGE in v0.0.2**: The `images` parameter (List<ImageProvider>) has been replaced by `items` (List<CarouselItem>) to support videos.
 
 ### Step 1: Import the package
 
-In the file where you want to use the carousel, add the import statement:
-
 ```dart
 import 'package:image_preview_carousel/image_preview_carousel.dart';
+import 'package:image_preview_carousel/carousel_item.dart';
 ```
 
-### Step 2: Prepare your images
+### Step 2: Prepare your items
 
-Create a list of `ImageProvider` objects. These can be `NetworkImage`, `AssetImage`, `FileImage`, or `MemoryImage`.
+Create a list of `CarouselItem` objects. You can mix images and videos.
 
 ```dart
-final List<ImageProvider> myImages = [
-    AssetImage('assets/images/image1.png'),
-    AssetImage('assets/images/image2.png'),
-    AssetImage('assets/images/image3.png'),
+final List<CarouselItem> myItems = [
+  // Image from Asset
+  CarouselItem.image(
+    image: AssetImage('assets/images/image1.png'),
+  ),
+  
+  // Image from Network
+  CarouselItem.image(
+    image: NetworkImage('https://example.com/photo.jpg'),
+  ),
+
+  // Video from Network
+  CarouselItem.video(
+    videoUrl: 'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
+    // Optional: Provide a thumbnail for the video in the gallery
+    thumbnail: NetworkImage('https://example.com/video_thumb.jpg'), 
+  ),
 ];
 ```
 
 ### Step 3: Add the Widget
 
-Place the `ImagePreviewCarousel` widget in your build method.
-
 ```dart
 @override
 Widget build(BuildContext context) {
-  final List<ImageProvider> myImages = [
-    AssetImage('assets/images/image1.png'),
-    AssetImage('assets/images/image2.png'),
-    AssetImage('assets/images/image3.png'),
-  ];
   return Scaffold(
-    appBar: AppBar(title: Text('Image Carousel Demo')),
+    appBar: AppBar(title: Text('Media Carousel Demo')),
     body: Center(
       child: ImagePreviewCarousel(
-        images: myImages,
-        carouselHeight: 300.0, // Optional: Height of the main image
-        thumbnailHeight: 80.0, // Optional: Height of the thumbnails
+        items: myItems,
+        carouselHeight: 300.0,
+        thumbnailHeight: 80.0,
+        arrowColor: Colors.white, // Customize arrow color
+        videoIndicatorColor: Colors.red, // Customize video icon color on thumbnails
       ),
     ),
   );
 }
 ```
 
-If combine with dialog :
-
-```dart
-InkWell(
-    onTap: () async {
-        showDialog(
-            context: context,
-            builder: (context) => Dialog(
-                backgroundColor: whiteColor,
-                child: ImagePreviewCarousel(
-                    images: myImages,
-                    carouselHeight:
-                        300.0, // Optional: Height of the main image
-                    thumbnailHeight:
-                        80.0, // Optional: Height of the thumbnails
-                ),
-            ),
-        );
-    },
-    child: Text(
-        'See Images',
-        style: LessworryTextStyle.txtMdRegular(
-            context: context,
-            color: Theme.of(context).primaryColor,
-        ),
-    ),
-),
-```
-
 ## Customization Parameters
 
 | Parameter | Type | Default | Description |
 |---|---|---|---|
-| `images` | `List<ImageProvider>` | Required | List of images to display. |
+| `items` | `List<CarouselItem>` | Required | List of `CarouselItem.image` or `CarouselItem.video` to display. |
 | `carouselHeight` | `double` | `300.0` | Height of the main carousel area. |
 | `thumbnailHeight` | `double` | `80.0` | Height of the horizontal thumbnail list. |
 | `thumbnailPadding` | `EdgeInsetsGeometry` | `symmetric(horizontal: 4.0)` | Padding around each thumbnail item. |
-| `initialIndex` | `int` | `0` | The index of the image to show first. |
+| `initialIndex` | `int` | `0` | The index of the item to show first. |
 | `selectedThumbnailBorderColor` | `Color` | `Colors.blue` | Color of the border for the active thumbnail. |
 | `selectedThumbnailBorderWidth` | `double` | `2.0` | Width of the active thumbnail border. |
+| `videoIndicatorIcon` | `IconData` | `Icons.videocam` | Icon to show on video thumbnails. |
+| `videoIndicatorColor` | `Color` | `Colors.white` | Color of the video indicator icon. |
+| `arrowColor` | `Color` | `Colors.white` | Color of the navigation arrows. |
+| `arrowSize` | `double` | `30.0` | Size of the navigation arrows. |

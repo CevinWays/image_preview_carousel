@@ -200,7 +200,8 @@ class _ImagePreviewCarouselState extends State<ImagePreviewCarousel> {
         const SizedBox(height: 12),
 
         // Thumbnail Gallery
-        SizedBox(
+        Container(
+          margin: const EdgeInsets.symmetric(horizontal: 16),
           height: widget.thumbnailHeight,
           child: ListView.builder(
             controller: _scrollController,
