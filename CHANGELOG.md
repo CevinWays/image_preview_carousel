@@ -1,3 +1,7 @@
+## 0.0.2
+
+* Added support for videos.
+
 ## 0.0.1
 
-* TODO: Describe initial release.
+* Initial release.
