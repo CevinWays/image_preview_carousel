@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:image_preview_carousel/image_preview_carousel.dart';
+import 'package:image_preview_carousel/carousel_item.dart';
 
 void main() {
   // Transparent 1x1 pixel PNG
@@ -80,13 +81,13 @@ void main() {
     WidgetTester tester,
   ) async {
     final images = [
-      MemoryImage(kTransparentImage),
-      MemoryImage(kTransparentImage),
-      MemoryImage(kTransparentImage),
+      CarouselItem.image(image: MemoryImage(kTransparentImage)),
+      CarouselItem.image(image: MemoryImage(kTransparentImage)),
+      CarouselItem.image(image: MemoryImage(kTransparentImage)),
     ];
 
     await tester.pumpWidget(
-      MaterialApp(home: Scaffold(body: ImagePreviewCarousel(images: images))),
+      MaterialApp(home: Scaffold(body: ImagePreviewCarousel(items: images))),
     );
 
     // Verify PageView (Carousel) exists

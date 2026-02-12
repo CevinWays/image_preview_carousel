@@ -1,6 +1,6 @@
 name: image_preview_carousel
 description: "A Flutter package that provides a synchronized image carousel with a thumbnail gallery."
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/CevinWays/image_preview_carousel
 repository: https://github.com/CevinWays/image_preview_carousel
 
@@ -11,6 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  video_player: ^2.10.1
 
 dev_dependencies:
   flutter_test:
