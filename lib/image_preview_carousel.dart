@@ -1,8 +1,18 @@
+/// A Flutter package that provides a synchronized image carousel with a thumbnail gallery.
+library image_preview_carousel;
+
 import 'package:flutter/material.dart';
 
 import 'package:image_preview_carousel/carousel_item.dart';
 import 'package:image_preview_carousel/video_player_widget.dart';
 
+/// A widget that displays a carousel of images and videos with a synchronized thumbnail gallery.
+///
+/// The carousel supports:
+/// * Mixing images and videos.
+/// * Auto-scrolling (optional implementation).
+/// * Thumbnail navigation.
+/// * Customizing dimensions and styling.
 class ImagePreviewCarousel extends StatefulWidget {
   /// The list of items (images/videos) to display in the carousel and thumbnail gallery.
   final List<CarouselItem> items;

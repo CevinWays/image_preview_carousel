@@ -1,10 +1,18 @@
+/// A reusable video player widget for the carousel.
+library video_player_widget;
+
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
+/// A widget that plays a video from a network URL.
 class VideoPlayerWidget extends StatefulWidget {
+  /// The URL of the video to play.
   final String videoUrl;
+
+  /// Whether the video should start playing automatically.
   final bool autoPlay;
 
+  /// Creates a [VideoPlayerWidget].
   const VideoPlayerWidget({
     super.key,
     required this.videoUrl,

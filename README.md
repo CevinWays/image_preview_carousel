@@ -97,3 +97,10 @@ Widget build(BuildContext context) {
 | `videoIndicatorColor` | `Color` | `Colors.white` | Color of the video indicator icon. |
 | `arrowColor` | `Color` | `Colors.white` | Color of the navigation arrows. |
 | `arrowSize` | `double` | `30.0` | Size of the navigation arrows. |
+| `carousel_item` | `CarouselItem` | `Required` | List of `CarouselItem.image` or `CarouselItem.video` to display. |
+| `carouselItem.carouselItemType` | `CarouselItemType` | `CarouselItemType.image` | Type of the carousel item. |
+| `carouselItem.videoUrl` | `String` | `null` | URL of the video. |
+| `carouselItem.thumbnail` | `ImageProvider` | `null` | Thumbnail for the video. |
+| `carouselItem.image` | `ImageProvider` | `null` | Image for the image item. |
+| `carouselItem.video` | `VideoPlayerController` | `null` | Video player controller for the video item. |
+
