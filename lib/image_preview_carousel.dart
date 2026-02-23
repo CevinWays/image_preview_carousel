@@ -47,6 +47,9 @@ class ImagePreviewCarousel extends StatefulWidget {
   /// Size of the navigation arrows.
   final double arrowSize;
 
+  /// Maximum allowed height for the entire widget. If null, it calculates based on constraints.
+  final double? maxHeight;
+
   const ImagePreviewCarousel({
     super.key,
     required this.items,
@@ -60,6 +63,7 @@ class ImagePreviewCarousel extends StatefulWidget {
     this.videoIndicatorColor = Colors.white,
     this.arrowColor = Colors.white,
     this.arrowSize = 30.0,
+    this.maxHeight,
   });
 
   @override
@@ -140,11 +144,18 @@ class _ImagePreviewCarouselState extends State<ImagePreviewCarousel> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final double screenHeight = MediaQuery.of(context).size.height;
-        final double maxSafeHeight = screenHeight - 112;
+        final double availableHeight =
+            widget.maxHeight ??
+            (constraints.maxHeight.isFinite
+                ? constraints.maxHeight
+                : MediaQuery.of(context).size.height -
+                    MediaQuery.viewPaddingOf(context).vertical);
+
+        // Increase safety margin to account for dialog headers/paddings
+        final double maxSafeHeight = availableHeight - 160;
 
         double effectiveCarouselHeight = widget.carouselHeight;
-        final double otherContentHeight = widget.thumbnailHeight + 12;
+        final double otherContentHeight = widget.thumbnailHeight + 24;
 
         if (effectiveCarouselHeight + otherContentHeight > maxSafeHeight) {
           effectiveCarouselHeight = maxSafeHeight - otherContentHeight;

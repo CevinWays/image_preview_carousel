@@ -1,3 +1,8 @@
+## 0.0.4
+
+* Fixed overflow issue with improved height calculation.
+* Added `maxHeight` parameter for explicit control over widget height.
+
 ## 0.0.3
 
 * Fixed the issue where the carousel height was not adjusted to prevent overflow.

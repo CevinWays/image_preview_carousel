@@ -28,7 +28,7 @@ flutter pub get
 
 ## Usage
 
-> **BREAKING CHANGE in v0.0.2**: The `images` parameter (List<ImageProvider>) has been replaced by `items` (List<CarouselItem>) to support videos.
+> **BREAKING CHANGE in v0.0.2**: The `images` parameter (`List<ImageProvider>`) has been replaced by `items` - `(List<CarouselItem>)` to support videos.
 
 ### Step 1: Import the package
 
@@ -74,6 +74,7 @@ Widget build(BuildContext context) {
         items: myItems,
         carouselHeight: 300.0,
         thumbnailHeight: 80.0,
+        maxHeight: 500.0, // Optional: Explicitly limit the total height of the widget, If null, it calculates based on constraints.
         arrowColor: Colors.white, // Customize arrow color
         videoIndicatorColor: Colors.red, // Customize video icon color on thumbnails
       ),
@@ -97,10 +98,14 @@ Widget build(BuildContext context) {
 | `videoIndicatorColor` | `Color` | `Colors.white` | Color of the video indicator icon. |
 | `arrowColor` | `Color` | `Colors.white` | Color of the navigation arrows. |
 | `arrowSize` | `double` | `30.0` | Size of the navigation arrows. |
-| `carousel_item` | `CarouselItem` | `Required` | List of `CarouselItem.image` or `CarouselItem.video` to display. |
-| `carouselItem.carouselItemType` | `CarouselItemType` | `CarouselItemType.image` | Type of the carousel item. |
-| `carouselItem.videoUrl` | `String` | `null` | URL of the video. |
-| `carouselItem.thumbnail` | `ImageProvider` | `null` | Thumbnail for the video. |
-| `carouselItem.image` | `ImageProvider` | `null` | Image for the image item. |
-| `carouselItem.video` | `VideoPlayerController` | `null` | Video player controller for the video item. |
+| `maxHeight` | `double?` | `null` | Maximum allowed total height. If null, it's calculated automatically based on available space to prevent overflow. |
+
+### `CarouselItem` Details
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `type` | `CarouselItemType` | `Required` | Either `CarouselItemType.image` or `CarouselItemType.video`. |
+| `image` | `ImageProvider?` | `null` | The image to display (for image type). |
+| `videoUrl` | `String?` | `null` | The URL of the video to play (for video type). |
+| `thumbnail` | `ImageProvider?` | `null` | Optional thumbnail for video gallery. |
 
